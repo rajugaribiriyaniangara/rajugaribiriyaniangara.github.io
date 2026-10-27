@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1A0F0C">
+  <title>Raju Gari Biryani – Menu</title>
+  <meta name="description" content="Digital menu of Raju Gari Biryani, Angara, Andhra Pradesh">
+  <style>
+/* ==========================================================
+   Raju Gari Biryani – styles
+   Theme: warm espresso + brass gold (from the poster's brass pot),
+   with the poster's red kept only as a small accent.
+   To tweak the colours, change only this :root block.
+   ========================================================== */
+:root {
+  --bg: #1A0F0C;            /* deep espresso */
+  --bg-soft: #26160F;
+  --card: #2B1B14;
+  --line: rgba(227, 176, 75, 0.28);
+  --gold: #E3B04B;          /* brass pot */
+  --gold-light: #F7DFA5;
+  --text: #F6E9D5;
+  --muted: #BFA88C;
+  --red: #D62828;           /* poster red – accent only */
+  --red-dark: #8F1414;
+  --leaf: #2E8B2E;          /* banana leaf green */
+  --veg: #3DBE5C;
+  --nonveg: #F0524F;
+  --radius: 18px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Telugu", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+  min-height: 100vh;
+}
+
+/* ---------- Prototype banner ---------- */
+.sample-banner {
+  background: #FFE08A;
+  color: #5A3B00;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 12px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 18px 18px 28px;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(227, 176, 75, 0.28) 0, transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(46, 139, 46, 0.30) 0, transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(46, 139, 46, 0.30) 0, transparent 34%),
+    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  border-bottom: 1px solid var(--line);
+}
+.lang-switch {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  margin-bottom: 16px;
+}
+.lang-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--gold-light);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 999px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.lang-switch button.active { background: var(--gold); color: #2A160B; }
+
+.hero-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+.hero-title {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin: 6px 0 12px;
+  background: linear-gradient(180deg, #FFF1C9 0%, var(--gold) 55%, #B9852A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+.hero-pill {
+  display: inline-block;
+  background: linear-gradient(180deg, var(--red), var(--red-dark));
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 5px 24px;
+  border-radius: 8px;
+  border: 1.5px solid var(--gold);
+}
+.hero-address { color: var(--gold-light); font-weight: 600; font-size: 1rem; margin: 12px 0 4px; }
+.hero-welcome {
+  font-family: Georgia, "Noto Serif Telugu", serif;
+  font-style: italic;
+  color: var(--text);
+  font-size: 1.15rem;
+  max-width: 28ch;
+  margin: 12px auto 16px;
+}
+.hero-date {
+  display: inline-block;
+  background: rgba(227, 176, 75, 0.12);
+  color: var(--gold-light);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ---------- Category bar ---------- */
+.categories {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 14px;
+  background: rgba(26, 15, 12, 0.94);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+.categories::-webkit-scrollbar { display: none; }
+.categories button {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--gold-light);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  min-height: 40px;
+  cursor: pointer;
+}
+.categories button.active { background: var(--gold); color: #2A160B; border-color: var(--gold); }
+
+/* ---------- Menu cards ---------- */
+.menu { padding: 14px; display: grid; gap: 14px; max-width: 900px; margin: 0 auto; }
+.section-title {
+  font-family: Georgia, "Noto Serif Telugu", serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin: 12px 0 -2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+
+.card {
+  display: flex;
+  gap: 12px;
+  background: linear-gradient(160deg, var(--card), #22140E);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card-img {
+  flex: 0 0 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  background: radial-gradient(circle at 50% 40%, rgba(227, 176, 75, 0.35), rgba(227, 176, 75, 0.08));
+}
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+.card-body { flex: 1; padding: 12px 12px 12px 0; min-width: 0; }
+.card-top { display: flex; align-items: center; gap: 8px; }
+.dot {
+  width: 14px; height: 14px; flex: 0 0 14px;
+  border: 2px solid var(--veg); border-radius: 3px; position: relative;
+}
+.dot::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: var(--veg); }
+.dot.nonveg { border-color: var(--nonveg); }
+.dot.nonveg::after { background: var(--nonveg); }
+.card-name { font-size: 1rem; font-weight: 700; color: var(--gold-light); }
+.card-desc { font-size: 0.85rem; color: var(--muted); margin: 4px 0 8px; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.price { font-size: 1.15rem; font-weight: 800; color: var(--gold); }
+.sample-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em;
+  background: rgba(255, 224, 138, 0.16); color: #FFE08A;
+  border: 1px solid rgba(255, 224, 138, 0.4);
+  border-radius: 6px; padding: 3px 7px;
+}
+
+/* Item switched off for today */
+.card.soldout { opacity: 0.5; }
+.card.soldout .price { text-decoration: line-through; color: var(--muted); }
+.soldout-tag {
+  font-size: 0.7rem; font-weight: 700;
+  background: #555; color: #fff; border-radius: 6px; padding: 3px 8px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  padding: 30px 18px 44px;
+  margin-top: 20px;
+  background: linear-gradient(180deg, var(--bg), #2A0E0B);
+  border-top: 1px solid var(--line);
+}
+.thanks { font-size: 1.35rem; font-weight: 700; color: var(--gold); }
+.footer-small { font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
+
+/* ---------- Larger phones / tablets ---------- */
+@media (min-width: 600px) {
+  .menu { grid-template-columns: 1fr 1fr; }
+  .section-title { grid-column: 1 / -1; }
+  .hero-title { font-size: 2.8rem; }
+}
+
+/* ---------- Loading / error messages ---------- */
+[hidden] { display: none !important; }
+.notice {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 36px 16px;
+  color: var(--gold-light);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+.retry {
+  margin-top: 14px;
+  border: 0;
+  background: var(--gold);
+  color: #2A160B;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 999px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- PROTOTYPE BANNER: delete this block when the real menu is added -->
+  <div class="sample-banner" data-i18n="sampleBanner"></div>
+
+  <header class="hero">
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" id="btn-en" data-lang="en">English</button>
+      <button type="button" id="btn-te" data-lang="te">తెలుగు</button>
+    </div>
+    <p class="hero-label" data-i18n="tagline"></p>
+    <h1 class="hero-title" data-i18n="restaurantName"></h1>
+    <span class="hero-pill" data-i18n="town"></span>
+    <p class="hero-address" data-i18n="location"></p>
+    <p class="hero-welcome" data-i18n="welcome"></p>
+    <p class="hero-date" id="today-date" aria-live="polite"></p>
+  </header>
+
+  <nav class="categories" id="categories" aria-label="Menu categories"></nav>
+
+  <main class="menu" id="menu"></main>
+
+  <footer class="footer">
+    <p class="thanks" data-i18n="thanks"></p>
+    <p class="footer-small" data-i18n="footerNote"></p>
+  </footer>
+
+  <!-- Order matters: settings, loader, sample data, translations, then app logic -->
+  <script>
+/* Site settings. This is the only file that changes when the menu
+   source changes.
+
+   SHEET_ID
+     ""        -> prototype mode: shows the sample items from menu-data.js
+     "abc123"  -> live mode: reads the menu from that Google Sheet
+                  (the long code between /d/ and /edit in the sheet link)
+
+   SHEET_CSV_URL (optional, advanced)
+     A full CSV link. Used instead of SHEET_ID when it is not empty.
+*/
+const SITE_CONFIG = {
+  SHEET_ID: "1MtHf-cv8UiS1oFqxylkVQhYpRmd_3ahzhYnmGt44Tao",
+  SHEET_CSV_URL: ""
+};
+
+</script>
+  <script>
+/* ==========================================================
+   Reads the menu from a Google Sheet shared as CSV and turns it
+   into the same shape as MENU_DATA (see menu-data.js).
+
+   Sheet columns (row 1 = headings, exactly these names):
+     name_en, name_te, price, available, category_en, category_te,
+     veg, emoji, desc_en, desc_te, image_url
+   Only name_en (or name_te), price and category_en are really needed.
+   ========================================================== */
+var SheetLoader = (function () {
+  "use strict";
+
+  // ---- Small CSV reader (handles "quoted, commas", "" quotes, new lines) ----
+  function parseCsv(text) {
+    var rows = [], row = [], field = "", inQ = false, i, c;
+    if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+    for (i = 0; i < text.length; i++) {
+      c = text[i];
+      if (inQ) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i++; } else { inQ = false; }
+        } else { field += c; }
+      } else if (c === '"') {
+        inQ = true;
+      } else if (c === ",") {
+        row.push(field); field = "";
+      } else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(field); field = "";
+        rows.push(row); row = [];
+      } else {
+        field += c;
+      }
+    }
+    if (field !== "" || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function normHeader(h) {
+    return String(h).replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "").toLowerCase();
+  }
+
+  function slug(s) {
+    var out = String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    return out || "other";
+  }
+
+  function parsePrice(s) {
+    var cleaned = String(s).replace(/[^0-9.]/g, "");
+    if (cleaned === "") return null;
+    var n = Number(cleaned);
+    return isFinite(n) ? n : null;
+  }
+
+  function parseAvailable(s) {
+    var v = String(s).trim().toLowerCase();
+    if (v === "") return true;
+    return !(v === "no" || v === "n" || v === "false" || v === "0" ||
+             v === "sold out" || v === "soldout" || v === "sold" || v === "అయిపోయింది");
+  }
+
+  // true = veg, false = non-veg, null = not specified (no dot shown)
+  function parseVeg(s) {
+    var v = String(s).trim().toLowerCase();
+    if (v === "") return null;
+    if (v.indexOf("non") !== -1 || v === "nv" || v === "no" || v === "n" || v === "false") return false;
+    if (v.charAt(0) === "v" || v === "yes" || v === "y" || v === "true" || v === "1") return true;
+    return null;
+  }
+
+  // ---- Rows -> menu object ----
+  function csvToMenu(text) {
+    var rows = parseCsv(text);
+    if (rows.length < 2) throw new Error("empty");
+    var header = rows[0].map(normHeader);
+    if (header.indexOf("name_en") === -1 && header.indexOf("name_te") === -1) {
+      throw new Error("bad_columns");
+    }
+
+    var categories = [], catIndex = {}, items = [], n = 0;
+
+    rows.slice(1).forEach(function (r) {
+      function get(col) {
+        var idx = header.indexOf(col);
+        return idx === -1 || r[idx] === undefined ? "" : String(r[idx]).trim();
+      }
+      var nameEn = get("name_en"), nameTe = get("name_te");
+      if (!nameEn && !nameTe) return;                      // blank row
+
+      var catEn = get("category_en") || get("category_te") || "Other";
+      var catTe = get("category_te") || catEn;
+      var catId = slug(catEn === "Other" && get("category_te") ? get("category_te") : catEn);
+      if (!catIndex[catId]) {
+        catIndex[catId] = true;
+        categories.push({ id: catId, name: { en: catEn, te: catTe } });
+      }
+
+      var descEn = get("desc_en"), descTe = get("desc_te");
+      var img = get("image_url");
+      n++;
+      items.push({
+        id: n,
+        category: catId,
+        veg: parseVeg(get("veg")),
+        available: parseAvailable(get("available")),
+        emoji: get("emoji") || "🍽️",
+        price: parsePrice(get("price")),
+        image: /^https?:\/\//i.test(img) ? img : "",
+        name: { en: nameEn || nameTe, te: nameTe || nameEn },
+        desc: { en: descEn || descTe, te: descTe || descEn }
+      });
+    });
+
+    return { categories: categories, items: items };
+  }
+
+  // ---- The two Google addresses that give a shared sheet as CSV ----
+  function sheetUrls(id) {
+    var base = "https://docs.google.com/spreadsheets/d/" + encodeURIComponent(id);
+    return [base + "/gviz/tq?tqx=out:csv", base + "/export?format=csv"];
+  }
+
+  // ---- Download the CSV (tries each address in turn until one works) ----
+  function fetchOne(url) {
+    var sep = url.indexOf("?") === -1 ? "?" : "&";
+    return fetch(url + sep + "_=" + Date.now(), { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("http_" + res.status);
+        return res.text();
+      })
+      .then(function (text) {
+        // A sheet that is not shared returns a web page, not a CSV
+        if (/^\s*</.test(text)) throw new Error("not_public");
+        return text;
+      });
+  }
+
+  function fetchCsv(urls) {
+    var list = typeof urls === "string" ? [urls] : urls.slice();
+    var lastError = new Error("no_url");
+    function next(i) {
+      if (i >= list.length) return Promise.reject(lastError);
+      return fetchOne(list[i]).catch(function (e) { lastError = e; return next(i + 1); });
+    }
+    return next(0);
+  }
+
+  var api = { parseCsv: parseCsv, csvToMenu: csvToMenu, fetchCsv: fetchCsv, sheetUrls: sheetUrls };
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  return api;
+})();
+
+</script>
+  <script>
+/* ==========================================================
+   MENU DATA  –  ALL ITEMS AND PRICES BELOW ARE SAMPLES.
+   Replace with the real menu when it is provided.
+
+   Later, a secure admin dashboard + database will replace this
+   file: app.js will load the same shape of data from a server
+   instead of from this variable. Keep the shape unchanged.
+   available: false  ->  item shows as "Sold out today".
+   ========================================================== */
+const MENU_DATA = {
+  categories: [
+    { id: "biryani",  name: { en: "Biryani",  te: "బిర్యానీ" } },
+    { id: "starters", name: { en: "Starters", te: "స్టార్టర్స్" } },
+    { id: "curries",  name: { en: "Curries",  te: "కూరలు" } },
+    { id: "drinks",   name: { en: "Drinks",   te: "పానీయాలు" } },
+    { id: "sweets",   name: { en: "Sweets",   te: "స్వీట్లు" } }
+  ],
+  items: [
+    { id: 1, category: "biryani", available: true, veg: false, emoji: "🍛", price: 180, image: "",
+      name: { en: "Sample Chicken Biryani", te: "నమూనా చికెన్ బిర్యానీ" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 2, category: "biryani", available: true, veg: false, emoji: "🍛", price: 260, image: "",
+      name: { en: "Sample Mutton Biryani", te: "నమూనా మటన్ బిర్యానీ" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 3, category: "biryani", available: true, veg: true, emoji: "🍚", price: 140, image: "",
+      name: { en: "Sample Veg Biryani", te: "నమూనా వెజ్ బిర్యానీ" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 4, category: "starters", available: true, veg: false, emoji: "🍗", price: 150, image: "",
+      name: { en: "Sample Chicken Starter", te: "నమూనా చికెన్ స్టార్టర్" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 5, category: "starters", available: true, veg: true, emoji: "🧆", price: 110, image: "",
+      name: { en: "Sample Veg Starter", te: "నమూనా వెజ్ స్టార్టర్" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 6, category: "curries", available: true, veg: false, emoji: "🥘", price: 170, image: "",
+      name: { en: "Sample Chicken Curry", te: "నమూనా చికెన్ కర్రీ" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 7, category: "curries", available: true, veg: true, emoji: "🥘", price: 120, image: "",
+      name: { en: "Sample Veg Curry", te: "నమూనా వెజ్ కర్రీ" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 8, category: "drinks", available: true, veg: true, emoji: "🥤", price: 30, image: "",
+      name: { en: "Sample Soft Drink", te: "నమూనా కూల్ డ్రింక్" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 9, category: "drinks", available: true, veg: true, emoji: "🥛", price: 40, image: "",
+      name: { en: "Sample Buttermilk", te: "నమూనా మజ్జిగ" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } },
+    { id: 10, category: "sweets", available: true, veg: true, emoji: "🍮", price: 60, image: "",
+      name: { en: "Sample Sweet", te: "నమూనా స్వీట్" },
+      desc: { en: "Sample item – real description coming soon", te: "నమూనా ఐటమ్ – అసలు వివరణ త్వరలో" } }
+  ]
+};
+
+</script>
+  <script>
+/* All fixed text on the page, in both languages.
+   To change a sentence, edit it here – nowhere else. */
+const TRANSLATIONS = {
+  en: {
+    restaurantName: "Raju Gari Biryani",
+    tagline: "Family Restaurant",
+    town: "Angara",
+    location: "Gandhi Bomma Centre, Angara, Andhra Pradesh",
+    welcome: "Welcome to Raju Gari Biryani! We are happy to serve you.",
+    thanks: "Thank you! Visit again ❤️",
+    sampleBanner: "PROTOTYPE – sample menu items and prices. Real menu coming soon.",
+    sampleTag: "SAMPLE",
+    soldOut: "Sold out today",
+    loading: "Loading today's menu…",
+    loadError: "Could not load the menu. Please check your internet connection.",
+    retry: "Try again",
+    empty: "Today's menu will be updated soon.",
+    footerNote: "Prices are in Indian Rupees (₹).",
+    all: "All",
+    locale: "en-IN"
+  },
+  te: {
+    restaurantName: "రాజు గారి బిర్యానీ",
+    tagline: "ఫ్యామిలీ రెస్టారెంట్",
+    town: "అంగర",
+    location: "గాంధీ బొమ్మ సెంటర్, అంగర, ఆంధ్రప్రదేశ్",
+    welcome: "రాజు గారి బిర్యానీకి స్వాగతం! మీకు సేవ చేయడం మాకు సంతోషం.",
+    thanks: "ధన్యవాదాలు! మళ్లీ రండి ❤️",
+    sampleBanner: "నమూనా – ఇవి నమూనా ఐటమ్స్ మరియు ధరలు. అసలు మెనూ త్వరలో.",
+    sampleTag: "నమూనా",
+    soldOut: "ఈ రోజు అయిపోయింది",
+    loading: "ఈ రోజు మెనూ లోడ్ అవుతోంది…",
+    loadError: "మెనూ లోడ్ కాలేదు. దయచేసి మీ ఇంటర్నెట్ కనెక్షన్ చూడండి.",
+    retry: "మళ్లీ ప్రయత్నించండి",
+    empty: "ఈ రోజు మెనూ త్వరలో అప్డేట్ అవుతుంది.",
+    footerNote: "ధరలు భారత రూపాయల్లో (₹).",
+    all: "అన్నీ",
+    locale: "te-IN"
+  }
+};
+
+</script>
+  <script>
+/* ==========================================================
+   App logic. Draws the page from a "menu" object.
+   - No sheet link in config.js  -> prototype mode (sample items)
+   - Sheet link in config.js     -> live mode (menu read from the sheet)
+   No ordering, no payments – display only.
+   ========================================================== */
+(function () {
+  "use strict";
+
+  var CACHE_KEY = "rgb_menu_csv_v1";
+  var cfg = (typeof SITE_CONFIG !== "undefined" && SITE_CONFIG) || {};
+  var SHEET_URLS = cfg.SHEET_CSV_URL ? [cfg.SHEET_CSV_URL]
+                 : cfg.SHEET_ID ? SheetLoader.sheetUrls(cfg.SHEET_ID)
+                 : [];
+
+  var state = {
+    lang: "en",
+    category: "all",
+    status: "ready",              // "loading" | "ready" | "error"
+    sampleMode: SHEET_URLS.length === 0
+  };
+  var menu = { categories: [], items: [] };
+
+  // ---- Remembered on this phone; safe if storage is blocked ----
+  function store(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+  function recall(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+  function t(key) { return TRANSLATIONS[state.lang][key]; }
+
+  // ---- Prices in ₹ (Indian number format) ----
+  function formatPrice(n) {
+    if (n === null || n === undefined) return "";
+    return "₹" + Number(n).toLocaleString("en-IN");
+  }
+
+  // ---- Today's date in Indian Standard Time, whatever the phone's timezone ----
+  function renderDate() {
+    var text;
+    try {
+      text = new Intl.DateTimeFormat(t("locale"), {
+        timeZone: "Asia/Kolkata",
+        weekday: "long", day: "numeric", month: "long", year: "numeric"
+      }).format(new Date());
+    } catch (e) {
+      text = new Date().toDateString();
+    }
+    document.getElementById("today-date").textContent = "📅 " + text;
+  }
+
+  // ---- Fixed text ----
+  function renderStaticText() {
+    document.documentElement.lang = state.lang;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      el.textContent = t(el.getAttribute("data-i18n"));
+    });
+    document.getElementById("btn-en").classList.toggle("active", state.lang === "en");
+    document.getElementById("btn-te").classList.toggle("active", state.lang === "te");
+    document.querySelector(".sample-banner").hidden = !state.sampleMode;
+    document.title = t("restaurantName") + " – Menu";
+  }
+
+  // ---- Category buttons ----
+  function renderCategories() {
+    var nav = document.getElementById("categories");
+    nav.innerHTML = "";
+    nav.hidden = state.status !== "ready" || menu.items.length === 0;
+    if (nav.hidden) return;
+    var list = [{ id: "all", label: t("all") }].concat(
+      menu.categories.map(function (c) { return { id: c.id, label: c.name[state.lang] }; })
+    );
+    list.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = c.label;
+      if (c.id === state.category) b.className = "active";
+      b.addEventListener("click", function () {
+        state.category = c.id;
+        renderCategories();
+        renderMenu();
+      });
+      nav.appendChild(b);
+    });
+  }
+
+  // ---- Food cards (text is always set with textContent, never as HTML) ----
+  function makeCard(item) {
+    var card = document.createElement("article");
+    card.className = "card";
+
+    var img = document.createElement("div");
+    img.className = "card-img";
+    if (item.image) {
+      var pic = document.createElement("img");
+      pic.src = item.image;
+      pic.alt = item.name[state.lang];
+      pic.loading = "lazy";
+      img.appendChild(pic);
+    } else {
+      img.textContent = item.emoji;   // placeholder until real photos exist
+    }
+
+    var body = document.createElement("div");
+    body.className = "card-body";
+
+    var top = document.createElement("div");
+    top.className = "card-top";
+    if (item.veg === true || item.veg === false) {
+      var dot = document.createElement("span");
+      dot.className = "dot" + (item.veg ? "" : " nonveg");
+      dot.setAttribute("aria-label", item.veg ? "Veg" : "Non-veg");
+      top.appendChild(dot);
+    }
+    var name = document.createElement("h3");
+    name.className = "card-name";
+    name.textContent = item.name[state.lang];
+    top.appendChild(name);
+    body.appendChild(top);
+
+    var descText = item.desc && item.desc[state.lang];
+    if (descText) {
+      var desc = document.createElement("p");
+      desc.className = "card-desc";
+      desc.textContent = descText;
+      body.appendChild(desc);
+    }
+
+    var bottom = document.createElement("div");
+    bottom.className = "card-bottom";
+    var price = document.createElement("span");
+    price.className = "price";
+    price.textContent = formatPrice(item.price);
+    bottom.appendChild(price);
+
+    if (item.available === false) {
+      card.className += " soldout";
+      var sold = document.createElement("span");
+      sold.className = "soldout-tag";
+      sold.textContent = t("soldOut");
+      bottom.appendChild(sold);
+    } else if (state.sampleMode) {
+      var tag = document.createElement("span");
+      tag.className = "sample-tag";
+      tag.textContent = t("sampleTag");
+      bottom.appendChild(tag);
+    }
+
+    body.appendChild(bottom);
+    card.appendChild(img);
+    card.appendChild(body);
+    return card;
+  }
+
+  function makeNotice(message, withRetry) {
+    var box = document.createElement("div");
+    box.className = "notice";
+    var p = document.createElement("p");
+    p.textContent = message;
+    box.appendChild(p);
+    if (withRetry) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "retry";
+      b.textContent = t("retry");
+      b.addEventListener("click", loadFromSheet);
+      box.appendChild(b);
+    }
+    return box;
+  }
+
+  function renderMenu() {
+    var root = document.getElementById("menu");
+    root.innerHTML = "";
+
+    if (state.status === "loading") { root.appendChild(makeNotice(t("loading"), false)); return; }
+    if (state.status === "error")   { root.appendChild(makeNotice(t("loadError"), true)); return; }
+    if (menu.items.length === 0)    { root.appendChild(makeNotice(t("empty"), false)); return; }
+
+    menu.categories.forEach(function (cat) {
+      if (state.category !== "all" && state.category !== cat.id) return;
+      var items = menu.items.filter(function (i) { return i.category === cat.id; });
+      if (!items.length) return;
+      var h = document.createElement("h2");
+      h.className = "section-title";
+      h.textContent = cat.name[state.lang];
+      root.appendChild(h);
+      items.forEach(function (i) { root.appendChild(makeCard(i)); });
+    });
+  }
+
+  function renderAll() {
+    renderStaticText();
+    renderDate();
+    renderCategories();
+    renderMenu();
+  }
+
+  // ---- Live mode: read the menu from the Google Sheet ----
+  function useMenu(m) {
+    menu = m;
+    state.status = "ready";
+    var stillThere = menu.categories.some(function (c) { return c.id === state.category; });
+    if (!stillThere) state.category = "all";
+  }
+
+  function loadFromSheet() {
+    if (menu.items.length === 0) { state.status = "loading"; renderCategories(); renderMenu(); }
+    SheetLoader.fetchCsv(SHEET_URLS)
+      .then(function (text) {
+        var m = SheetLoader.csvToMenu(text);   // throws if the sheet is not a valid menu
+        store(CACHE_KEY, text);
+        useMenu(m);
+        renderCategories();
+        renderMenu();
+      })
+      .catch(function () {
+        // Keep showing the last good menu if there is one; otherwise show the error
+        if (menu.items.length === 0) {
+          state.status = "error";
+          renderCategories();
+          renderMenu();
+        }
+      });
+  }
+
+  function setLang(lang) {
+    state.lang = lang;
+    store("rgb_lang", lang);
+    renderAll();
+  }
+
+  function init() {
+    var saved = recall("rgb_lang");
+    if (saved === "en" || saved === "te") state.lang = saved;
+
+    document.getElementById("btn-en").addEventListener("click", function () { setLang("en"); });
+    document.getElementById("btn-te").addEventListener("click", function () { setLang("te"); });
+
+    if (state.sampleMode) {
+      menu = MENU_DATA;                       // prototype: sample items
+      renderAll();
+      return;
+    }
+
+    // Live mode: show the last menu this phone saw straight away, then refresh
+    var cached = recall(CACHE_KEY);
+    if (cached) {
+      try { useMenu(SheetLoader.csvToMenu(cached)); } catch (e) {}
+    }
+    if (menu.items.length === 0) state.status = "loading";
+    renderAll();
+    loadFromSheet();
+  }
+
+  init();
+})();
+
+</script>
+</body>
+</html>
